@@ -1,4 +1,4 @@
-from flask import Flask,redirect,url_for,jsonify
+from flask import Flask,redirect,url_for,jsonify,request
 app = Flask(__name__)
 
 @app.route("/")
@@ -10,12 +10,15 @@ def hello(name):
     return f"Hello {name}"
 
 
-@app.route("/getdata/<name>")
-def getData(name):
-    return jsonify({"Name":name,"EmpCode": "Pending"})
+@app.route("/getdata")
+def getData():
+    return jsonify({"Name":request.args["name"],"EmpCode": request.args["empcode"]})
 
-# if __name__ == "__main__" throws error but works after comment
-app.run()
+#throws error but works after comment
+#if __name__ == "__main__" 
+#app.run(debug=True,port=8000)
+app.run() ##Can also be used as a default option
+
 
 
 
