@@ -1,16 +1,22 @@
-from flask import Flask,redirect,url_for
+from flask import Flask,redirect,url_for,jsonify
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello"
+    return "home"
 
 @app.route("/hello/<name>")
-def help(name):
+def hello(name):
     return f"Hello {name}"
 
 
+@app.route("/getdata/<name>")
+def getData(name):
+    return jsonify({"Name":name,"EmpCode": "Pending"})
+
 # if __name__ == "__main__" throws error but works after comment
 app.run()
+
+
 
 
